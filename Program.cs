@@ -1,6 +1,7 @@
 ﻿using System;
+using ConsoleCards;
 
-namespace ProgrammingAssignment1
+namespace ProgrammingAssignment2
 {
     // IMPORTANT: Only add code in the section
     // indicated below. The code I've provided
@@ -8,18 +9,12 @@ namespace ProgrammingAssignment1
     // automated grader on Coursera
 
     /// <summary>
-    /// Programming Assignment 1
+    /// Programming Assignment 2
     /// </summary>
     class Program
     {
-        // x and y coordinates for points
-        static float point1X;
-        static float point1Y;
-        static float point2X;
-        static float point2Y;
-
         /// <summary>
-        /// Calculates angle and distance between two points
+        /// Implements Nothing Like Blackjack functionality
         /// </summary>
         /// <param name="args">command-line args</param>
         static void Main(string[] args)
@@ -28,56 +23,52 @@ namespace ProgrammingAssignment1
             string input = Console.ReadLine();
             while (input[0] != 'q')
             {
-                // extract point coordinates from string
-                GetInputValuesFromString(input);
 
                 // Add your code between this comment
                 // and the comment below. You can of
                 // course add more space between the
                 // comments as needed
-                float dx = point2X - point1X;
-                float dy = point2Y - point1Y;
-                float distance = (float)Math.Sqrt(Math.Pow(dx,2) + Math.Pow(dy,2));
-                float angle = (float)((Math.Atan2(dy, dx)) * 180 / Math.PI);
-                Console.WriteLine(distance + " " + angle);
+
+                // declare a deck variables and create a deck object
+                // DON'T SHUFFLE THE DECK
+                Deck dec1 = new Deck();
+                // deal 2 cards each to 4 players (deal properly, dealing
+                // the first card to each player before dealing the
+                // second card to each player)
+                Card card1_play1 = dec1.TakeTopCard();
+                Card card1_play2 = dec1.TakeTopCard();
+                Card card1_play3 = dec1.TakeTopCard();
+                Card card1_play4 = dec1.TakeTopCard();
+                Card card2_play1 = dec1.TakeTopCard();
+                Card card2_play2 = dec1.TakeTopCard();
+                Card card2_play3 = dec1.TakeTopCard();
+                Card card2_play4 = dec1.TakeTopCard();
+                // deal 1 more card to players 2 and 3
+                Card card3_play2 = dec1.TakeTopCard();
+                Card card3_play3 = dec1.TakeTopCard();
+                // flip all the cards over
+                card1_play1.FlipOver();
+                card1_play2.FlipOver();
+                card1_play3.FlipOver();
+                card1_play4.FlipOver();
+                card2_play1.FlipOver();
+                card2_play2.FlipOver();
+                card2_play3.FlipOver();
+                card2_play4.FlipOver();
+                card3_play2.FlipOver();
+                card3_play3.FlipOver();
+                // print the cards for player 1
+                Console.WriteLine("The cards are: " + card1_play1.Rank + "of" + card1_play1.Suit + ", " + card2_play1.Rank + "of" + card2_play1.Suit);
+                // print the cards for player 2
+                Console.WriteLine("The cards are: " + card1_play2.Rank + "of" + card1_play2.Suit + ", " + card2_play2.Rank + "of" + card2_play2.Suit + ", " + card3_play2.Rank + "of" + card3_play2.Suit);
+                // print the cards for player 3
+                Console.WriteLine("The cards are: " + card1_play3.Rank + "of" + card1_play3.Suit + ", " + card2_play3.Rank + "of" + card2_play3.Suit + ", " + card3_play3.Rank + "of" + card3_play3.Suit);
+                // print the cards for player 4
+                Console.WriteLine("The cards are: " + card1_play4.Rank + "of" + card1_play4.Suit + ", " + card2_play4.Rank + "of" + card2_play4.Suit);
                 // Don't add or modify any code below
                 // this comment
                 input = Console.ReadLine();
             }
-        }
-
-        /// <summary>
-        /// Extracts point coordinates from the given input string
-        /// </summary>
-        /// <param name="input">input string</param>
-        static void GetInputValuesFromString(string input)
-        {
-            // extract point 1 x
-            int spaceIndex = input.IndexOf(' ');
-            point1X = float.Parse(input.Substring(0, spaceIndex));
-
-            // move along string and extract point 1 y
-            input = input.Substring(spaceIndex + 1);
-            spaceIndex = input.IndexOf(' ');
-            point1Y = float.Parse(input.Substring(0, spaceIndex));
-
-            // move along string and extract point 2 x
-            input = input.Substring(spaceIndex + 1);
-            spaceIndex = input.IndexOf(' ');
-            point2X = float.Parse(input.Substring(0, spaceIndex));
-
-            // point 2 y is the rest of the string
-            input = input.Substring(spaceIndex + 1);
-            point2Y = float.Parse(input);
-           
-            #region Unfortunately, Mono doesn't have a Split method!
-            //string[] values = input.Split(' ');
-            //point1X = float.Parse(values[0]);
-            //point1Y = float.Parse(values[1]);
-            //point2X = float.Parse(values[2]);
-            //point2Y = float.Parse(values[3]);
-            #endregion
-
         }
     }
 }
