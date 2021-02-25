@@ -1,7 +1,6 @@
 ﻿using System;
-using ConsoleCards;
 
-namespace ProgrammingAssignment2
+namespace ProgrammingAssignment3
 {
     // IMPORTANT: Only add code in the section
     // indicated below. The code I've provided
@@ -9,12 +8,15 @@ namespace ProgrammingAssignment2
     // automated grader on Coursera
 
     /// <summary>
-    /// Programming Assignment 2
+    /// Programming Assignment 3
     /// </summary>
     class Program
     {
+        // number to classify
+        static int number;
+
         /// <summary>
-        /// Implements Nothing Like Blackjack functionality
+        /// Classifies numbers as even or odd and negative, 0, or positive
         /// </summary>
         /// <param name="args">command-line args</param>
         static void Main(string[] args)
@@ -23,52 +25,48 @@ namespace ProgrammingAssignment2
             string input = Console.ReadLine();
             while (input[0] != 'q')
             {
+                // extract number from string
+                GetInputValueFromString(input);
 
                 // Add your code between this comment
                 // and the comment below. You can of
                 // course add more space between the
                 // comments as needed
+                if (number == 0)
+                {
+                    Console.WriteLine("e 0");
+                }
+                if (number < 0 & number % 2 == 0)
+                {
+                    Console.WriteLine("e -1");
+                }
+                if (number > 0 & number % 2 == 0)
+                {
+                    Console.WriteLine("e 1");
+                }
+                if (number < 0 & number % 2 != 0)
+                {
+                    Console.WriteLine("o -1");
+                }
+                if (number > 0 & number % 2 != 0)
+                {
+                    Console.WriteLine("o 1");
+                }
 
-                // declare a deck variables and create a deck object
-                // DON'T SHUFFLE THE DECK
-                Deck dec1 = new Deck();
-                // deal 2 cards each to 4 players (deal properly, dealing
-                // the first card to each player before dealing the
-                // second card to each player)
-                Card card1_play1 = dec1.TakeTopCard();
-                Card card1_play2 = dec1.TakeTopCard();
-                Card card1_play3 = dec1.TakeTopCard();
-                Card card1_play4 = dec1.TakeTopCard();
-                Card card2_play1 = dec1.TakeTopCard();
-                Card card2_play2 = dec1.TakeTopCard();
-                Card card2_play3 = dec1.TakeTopCard();
-                Card card2_play4 = dec1.TakeTopCard();
-                // deal 1 more card to players 2 and 3
-                Card card3_play2 = dec1.TakeTopCard();
-                Card card3_play3 = dec1.TakeTopCard();
-                // flip all the cards over
-                card1_play1.FlipOver();
-                card1_play2.FlipOver();
-                card1_play3.FlipOver();
-                card1_play4.FlipOver();
-                card2_play1.FlipOver();
-                card2_play2.FlipOver();
-                card2_play3.FlipOver();
-                card2_play4.FlipOver();
-                card3_play2.FlipOver();
-                card3_play3.FlipOver();
-                // print the cards for player 1
-                Console.WriteLine("The cards are: " + card1_play1.Rank + "of" + card1_play1.Suit + ", " + card2_play1.Rank + "of" + card2_play1.Suit);
-                // print the cards for player 2
-                Console.WriteLine("The cards are: " + card1_play2.Rank + "of" + card1_play2.Suit + ", " + card2_play2.Rank + "of" + card2_play2.Suit + ", " + card3_play2.Rank + "of" + card3_play2.Suit);
-                // print the cards for player 3
-                Console.WriteLine("The cards are: " + card1_play3.Rank + "of" + card1_play3.Suit + ", " + card2_play3.Rank + "of" + card2_play3.Suit + ", " + card3_play3.Rank + "of" + card3_play3.Suit);
-                // print the cards for player 4
-                Console.WriteLine("The cards are: " + card1_play4.Rank + "of" + card1_play4.Suit + ", " + card2_play4.Rank + "of" + card2_play4.Suit);
+
                 // Don't add or modify any code below
                 // this comment
                 input = Console.ReadLine();
             }
+        }
+
+        /// <summary>
+        /// Extracts the number from the given input string
+        /// </summary>
+        /// <param name="input">input string</param>
+        static void GetInputValueFromString(string input)
+        {
+            number = int.Parse(input);
         }
     }
 }
